@@ -18,10 +18,10 @@ This app uses the following technologies and tools
 - Git
 - A way to send http requests (curl, postman ...)
 
-### Compiling source and running the server
+### Compiling sources and running the server
 
 1. Clone this repo using ssh or https
-2. Install dependancies and run tests with maven:
+2. Install dependencies and run tests with maven:
    <code>mvn clean install</code>
 3. Start a dev server : <code>mvn spring-boot:run</code> or a prod server <code>java -jar
    target/user-service-0.0.1.jar</code>
@@ -31,7 +31,7 @@ This app uses the following technologies and tools
 A user :
 
 - must have a username
-- must have a birthDate and should be at least 18 years old
+- must have a birthDate (YYYY-MM-DD) and should be at least 18 years old
 - must have a residenceCountry set to "France" or "FRA" (case is not important)
 - can have a phoneNumber. If he does, it should start by 0 or +33, following by 9 numbers
 - can have a gender.

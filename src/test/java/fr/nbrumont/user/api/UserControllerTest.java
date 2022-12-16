@@ -80,10 +80,11 @@ class UserControllerTest {
                     .accept(MediaType.APPLICATION_JSON);
 
             // When
-            MvcResult result = mvc.perform(request).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+            ResultActions result = mvc.perform(request);
 
             // Then
-            User createdUser = convertMVCResultToObject(result, User.class);
+            MvcResult mvcResult = result.andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+            User createdUser = convertMVCResultToObject(mvcResult, User.class);
             Assertions.assertThat(createdUser).isNotNull();
             Assertions.assertThat(createdUser).usingRecursiveComparison().ignoringFields("id").isEqualTo(user);
             Assertions.assertThat(createdUser.getId()).isNotNull();
@@ -214,7 +215,7 @@ class UserControllerTest {
         }
 
         @Test
-        @DisplayName("Requesting an user that does not exist should return a 204")
+        @DisplayName("Requesting a user that does not exist should return a 204")
         void findNonExistingUser() throws Exception {
             // Given
             MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/12")
@@ -223,14 +224,13 @@ class UserControllerTest {
 
             // When
             ResultActions result = mvc.perform(request);
-            ;
 
             // Then
             result.andExpect(MockMvcResultMatchers.status().is(204));
         }
 
         @Test
-        @DisplayName("Requesting an user with a wrong id format should return a 400")
+        @DisplayName("Requesting a user with a wrong id format should return a 400")
         void findWithWrongIdFormat() throws Exception {
             // Given
             MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/abc")
