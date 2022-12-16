@@ -61,7 +61,7 @@ class UserControllerTest {
     }
 
     @Nested
-    @DisplayName("Testing saving behaviors")
+    @DisplayName("Testing saving behaviours")
     @ExtendWith(MockitoExtension.class)
     class SaveTests {
 
@@ -143,7 +143,7 @@ class UserControllerTest {
             User user = new User();
             user.setBirthDate(LocalDate.of(2005, Month.JANUARY, 2));
             user.setUsername("nbrumont");
-            user.setResidenceCountry("Canada");
+            user.setResidenceCountry("France");
             user.setGender("M");
             user.setPhoneNumber("+33612345679");
             MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("")
@@ -156,7 +156,7 @@ class UserControllerTest {
 
             // Then
             result.andExpect(MockMvcResultMatchers.status().is(400))
-                    .andExpect(MockMvcResultMatchers.jsonPath("$.residenceCountry", Is.is("User must live in France")));
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.birthDate", Is.is("User must be adult")));
         }
 
 
@@ -211,7 +211,7 @@ class UserControllerTest {
             // Then
             User returnedUser = convertMVCResultToObject(result, User.class);
             Assertions.assertThat(returnedUser).isNotNull();
-            Assertions.assertThat(returnedUser).usingRecursiveComparison().isEqualTo(user);
+            Assertions.assertThat(returnedUser).usingRecursiveComparison().isEqualTo(createdUser);
         }
 
         @Test
