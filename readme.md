@@ -33,7 +33,7 @@ A user :
 - must have a username
 - must have a birthDate (YYYY-MM-DD) and should be at least 18 years old
 - must have a residenceCountry set to "France" or "FRA" (case is not important)
-- can have a phoneNumber. If he does, it should start by 0 or +33, following by 9 numbers
+- can have a phoneNumber. If he does, it should start by 0 or +33, followed by 9 numbers
 - can have a gender.
 
 Once the server is started, you can use the 2 following API :
