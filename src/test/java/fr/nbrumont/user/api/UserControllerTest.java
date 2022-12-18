@@ -2,8 +2,8 @@ package fr.nbrumont.user.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.nbrumont.user.database.UserRepository;
 import fr.nbrumont.user.database.User;
+import fr.nbrumont.user.database.UserRepository;
 import org.assertj.core.api.Assertions;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.AfterEach;
@@ -92,7 +92,7 @@ class UserControllerTest {
 
         @Test
         @DisplayName("A user missing mandatory fields should not be created and return a 400")
-        void userWithoutUserName() throws Exception {
+        void userWithoutMandatoryFields() throws Exception {
             // Given
             User user = new User();
             user.setGender("M");
