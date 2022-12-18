@@ -3,7 +3,7 @@ package fr.nbrumont.user.api;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.nbrumont.user.database.UserRepository;
-import fr.nbrumont.user.model.User;
+import fr.nbrumont.user.database.User;
 import org.assertj.core.api.Assertions;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.AfterEach;

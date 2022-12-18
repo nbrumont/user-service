@@ -1,7 +1,6 @@
 package fr.nbrumont.user.api;
 
-import fr.nbrumont.user.database.UserRepository;
-import fr.nbrumont.user.model.User;
+import fr.nbrumont.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +24,17 @@ import java.util.Map;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class UserController {
 
-    private final UserRepository repository;
+    private final UserService service;
 
     @PostMapping(path = {"/", ""}, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> save(@Valid @RequestBody User user) {
-        User savedUser = repository.save(user);
+    public ResponseEntity<UserDTO> save(@Valid @RequestBody UserForCreationDTO user) {
+        UserDTO savedUser = service.save(user);
         return ResponseEntity.ok(savedUser);
     }
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> findUserById(@PathVariable("id") Long id) {
-        return repository.findById(id)
+    public ResponseEntity<UserDTO> findUserById(@PathVariable("id") Long id) {
+        return service.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.noContent().build());
     }

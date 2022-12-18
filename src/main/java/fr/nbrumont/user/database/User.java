@@ -1,4 +1,4 @@
-package fr.nbrumont.user.model;
+package fr.nbrumont.user.database;
 
 import fr.nbrumont.user.validation.UserIsAdult;
 import fr.nbrumont.user.validation.UserLivesInFrance;
@@ -17,7 +17,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -26,7 +25,6 @@ import java.time.LocalDate;
 @Table(name = "users")
 @Entity
 @GroupSequence({User.class, ValidationSecondOrder.class})
-// allows for validation sorting, custom validation is done after default group
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +37,6 @@ public class User {
     @UserIsAdult(groups = ValidationSecondOrder.class)
     @NotNull(message = "BirthDate is mandatory")
     @Temporal(value = TemporalType.DATE)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "birthdate", nullable = false)
     private LocalDate birthDate;
 
