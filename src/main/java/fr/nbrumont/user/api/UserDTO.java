@@ -1,10 +1,10 @@
 package fr.nbrumont.user.api;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 public class UserDTO extends UserForCreationDTO {
     private Long id;
 }

@@ -42,5 +42,15 @@ Once the server is started, you can use the 2 following API :
 - POST http://localhost:8080/users/ to create a new user
 
 see [postman-collection](./postman_collection.json)
-or [integration tests](./src/test/java/fr/nbrumont/user/api/UserControllerTest.java) to learn more on how to use these.
+or [MVC tests](./src/test/java/fr/nbrumont/user/api/UserControllerTest.java) to learn more on how to use
+these.
 
+### Testing strategy
+
+1. Logic code (validators) is tested against unit test and MVC api tests.
+2. Non logic code (api, database, mappers) is tested against MVC api tests.
+
+Overall coverage is 94%. Missed hits are :
+
+- on ClockConfig (Clock is always mocked)
+- on unreachable code : auto-generated mapper that checks null on user input

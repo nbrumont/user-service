@@ -3,11 +3,13 @@ package fr.nbrumont.user.validation;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+@Component
 public class UserIsAdultValidator implements ConstraintValidator<UserIsAdult, LocalDate> {
 
     @Autowired
