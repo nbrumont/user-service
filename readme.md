@@ -25,6 +25,7 @@ This app uses the following technologies and tools
    <code>mvn clean install</code>
 3. Start a dev server : <code>mvn spring-boot:run</code> or a prod server <code>java -jar
    target/user-service-0.0.1.jar</code>
+4. Database administration console is available at http://localhost:8080/users/h2-console (jdbc url is jdbc:h2:mem:user)
 
 ### Using the API
 
@@ -42,15 +43,15 @@ Once the server is started, you can use the 2 following API :
 - POST http://localhost:8080/users/ to create a new user
 
 see [postman-collection](./postman_collection.json)
-or [MVC tests](./src/test/java/fr/nbrumont/user/api/UserControllerTest.java) to learn more on how to use
+or [MVC tests](./src/test/java/fr/nbrumont/user/api/UserControllerIntegrationTest.java) to learn more on how to use
 these.
 
 ### Testing strategy
 
-1. Logic code (validators) is tested against unit test and MVC api tests.
-2. Non logic code (api, database, mappers) is tested against MVC api tests.
+1. Code containing any logic is tested against unit test and MVC api tests.
+2. Code not containing any logic is tested against MVC api tests.
 
-Overall coverage is 94%. Missed hits are :
+Overall coverage is 95%. Missed hits are :
 
 - on ClockConfig (Clock is always mocked)
 - on unreachable code : auto-generated mapper that checks null on user input

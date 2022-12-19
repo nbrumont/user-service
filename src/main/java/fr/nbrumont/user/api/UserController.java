@@ -47,7 +47,7 @@ public class UserController {
      * @return a {@link ResponseEntity} containing the retrieved user, or a 404 status response if the user does not exist.
      */
     @GetMapping(path = "/{id}")
-    public ResponseEntity<UserDTO> findUserById(@PathVariable("id") Long id) {
+    public ResponseEntity<UserDTO> findById(@PathVariable("id") Long id) {
         return service.findById(id)
                 .map(ResponseEntity::ok)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
@@ -57,12 +57,11 @@ public class UserController {
      * Creates a specific error message when the user is missing from the body of the POST request ({@link HttpMessageNotReadableException})
      * The response will have a 400 statut and a json object containing the message "Body with user is mandatory"
      *
-     * @param ex {@link HttpMessageNotReadableException} the exception to handle
      * @return a {@link ResponseEntity} containing a map { message: reason }
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    private Map<String, String> handleMessageNotReadableException(HttpMessageNotReadableException ex) {
+    private Map<String, String> handleMessageNotReadableException() {
         Map<String, String> errors = new HashMap<>();
         errors.put("message", "Body with user is mandatory");
         return errors;
