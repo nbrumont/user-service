@@ -22,7 +22,7 @@ This app uses the following technologies and tools
 ### Compiling sources and running the server
 
 1. Clone this repo using ssh or https
-2. Install dependencies and run tests with maven:
+2. Install dependencies, compile and run tests with maven:
    <code>mvn clean install</code>
 3. Start a dev server : <code>mvn spring-boot:run</code> or a prod server <code>java -jar
    target/user-service-0.0.1.jar</code>
