@@ -51,7 +51,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"nbrumont\",\r\n    \"birthDate\": \"1990-07-07\",\r\n    \"residenceCountry\": \"France\",\r\n    \"phoneNumber\": \"0678912345\",\r\n    \"gender\": \"M\"\r\n}",
+					"raw": "{\r\n    \"username\": \"nbrumont\",\r\n    \"birthDate\": \"1990-12-31\",\r\n    \"residenceCountry\": \"France\",\r\n    \"phoneNumber\": \"0678912345\",\r\n    \"gender\": \"M\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -77,15 +77,6 @@
 			"request": {
 				"method": "POST",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"nbrumont\",\r\n    \"birthDate\": \"1990-07-07\",\r\n    \"residenceCountry\": \"France\",\r\n    \"phoneNumber\": \"0678912345\",\r\n    \"gender\": \"M\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "localhost:8080/users/",
 					"host": [
@@ -191,7 +182,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"nbrumont\",\r\n    \"birthDate\": \"1990-07-07\",\r\n    \"residenceCountry\": \"Canada\",\r\n    \"phoneNumber\": \"0678912345\",\r\n    \"gender\": \"M\"\r\n}",
+					"raw": "{\r\n    \"aaaa\": \"nbrumont\",\r\n    \"birthDate\": \"1990-07-07\",\r\n    \"residenceCountry\": \"Canada\",\r\n    \"phoneNumber\": \"0678912345\",\r\n    \"gender\": \"M\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
