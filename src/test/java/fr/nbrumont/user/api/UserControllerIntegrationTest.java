@@ -103,7 +103,24 @@ class UserControllerIntegrationTest {
 
             // Then
             result.andExpect(MockMvcResultMatchers.status().is(400))
-                    .andExpect(MockMvcResultMatchers.jsonPath("$.message", Is.is("Body with user is mandatory")));
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.message", Is.is("Body with correct user is mandatory")));
+        }
+
+        @Test
+        @DisplayName("A creation attempt with a wronly constitued body should fail and return a 400")
+        void creationWithWrongBody() throws Exception {
+            // Given
+            MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("")
+                    .content("{ \"aaa\": \"test\" }")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON);
+
+            // When
+            ResultActions result = mvc.perform(request);
+
+            // Then
+            result.andExpect(MockMvcResultMatchers.status().is(400))
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.message", Is.is("Body with correct user is mandatory")));
         }
 
         @Test

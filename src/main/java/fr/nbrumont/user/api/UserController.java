@@ -54,8 +54,8 @@ public class UserController {
     }
 
     /**
-     * Creates a specific error message when the user is missing from the body of the POST request ({@link HttpMessageNotReadableException})
-     * The response will have a 400 statut and a json object containing the message "Body with user is mandatory"
+     * Creates a specific error message when the user is missing or incorrect (i.e. wrong fields) from the body of the POST request ({@link HttpMessageNotReadableException})
+     * The response will have a 400 statut and a json object containing the message "Body with correct user is mandatory"
      *
      * @return a {@link ResponseEntity} containing a map { message: reason }
      */
@@ -63,7 +63,7 @@ public class UserController {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     private Map<String, String> handleMessageNotReadableException() {
         Map<String, String> errors = new HashMap<>();
-        errors.put("message", "Body with user is mandatory");
+        errors.put("message", "Body with correct user is mandatory");
         return errors;
     }
 
