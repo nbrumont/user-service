@@ -55,7 +55,7 @@ This configuration is done inside [application.properties](./src/main/resources/
 - Root context is /users
 - Database is h2 and url is jdbc:h2:mem:user
 - Database console is enabled on /h2-console
-- Hibernate create schema at startup
+- Hibernate creates schema at startup
 - No data is initialized during schema creation
 
 ### Testing strategy
