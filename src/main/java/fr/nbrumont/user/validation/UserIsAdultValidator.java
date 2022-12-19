@@ -15,6 +15,13 @@ public class UserIsAdultValidator implements ConstraintValidator<UserIsAdult, Lo
     @Autowired
     private Clock clock;
 
+    /**
+     * Checks that a date is not null and is older than 18 years - 1 day from today (we allow for the 18th birthday to be today)
+     *
+     * @param birthDate                  the {@link LocalDate} to check
+     * @param constraintValidatorContext the constraintContext, not used here but needed from the signature
+     * @return a boolean, true if validation passes, false if it fails
+     */
     @Override
     public boolean isValid(LocalDate birthDate, ConstraintValidatorContext constraintValidatorContext) {
         if (birthDate == null) {

@@ -2,8 +2,8 @@ package fr.nbrumont.user.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.nbrumont.user.database.User;
 import fr.nbrumont.user.database.UserRepository;
+import fr.nbrumont.user.model.User;
 import org.assertj.core.api.Assertions;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.AfterEach;
@@ -91,6 +91,22 @@ class UserControllerTest {
         }
 
         @Test
+        @DisplayName("A creation attempt without a body should fail and return a 400")
+        void creationWithoutBody() throws Exception {
+            // Given
+            MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON);
+
+            // When
+            ResultActions result = mvc.perform(request);
+
+            // Then
+            result.andExpect(MockMvcResultMatchers.status().is(400))
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.message", Is.is("Body with user is mandatory")));
+        }
+
+        @Test
         @DisplayName("A user missing mandatory fields should not be created and return a 400")
         void userWithoutMandatoryFields() throws Exception {
             // Given
@@ -111,7 +127,6 @@ class UserControllerTest {
                     .andExpect(MockMvcResultMatchers.jsonPath("$.birthDate", Is.is("BirthDate is mandatory")))
                     .andExpect(MockMvcResultMatchers.jsonPath("$.residenceCountry", Is.is("ResidenceCountry is mandatory")));
         }
-
 
         @Test
         @DisplayName("A user not living in france should not be created and return a 400")
@@ -215,7 +230,7 @@ class UserControllerTest {
         }
 
         @Test
-        @DisplayName("Requesting a user that does not exist should return a 204")
+        @DisplayName("Requesting a user that does not exist should return a 404")
         void findNonExistingUser() throws Exception {
             // Given
             MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/12")
@@ -226,7 +241,8 @@ class UserControllerTest {
             ResultActions result = mvc.perform(request);
 
             // Then
-            result.andExpect(MockMvcResultMatchers.status().is(204));
+            result.andExpect(MockMvcResultMatchers.status().is(404))
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.message", Is.is("User not found")));
         }
 
         @Test

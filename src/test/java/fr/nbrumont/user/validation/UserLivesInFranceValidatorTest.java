@@ -16,6 +16,7 @@ class UserLivesInFranceValidatorTest {
     UserLivesInFranceValidator validator;
 
     @ParameterizedTest(name = "{0} should be a valid input")
+    // Given
     @ValueSource(strings = {"France", "FRANCE", "FRA", "fra"})
     void validCountry(final String country) {
         // When
@@ -26,6 +27,7 @@ class UserLivesInFranceValidatorTest {
     }
 
     @ParameterizedTest(name = "{0} should not be a valid input")
+    // Given
     @NullAndEmptySource
     @ValueSource(strings = {"canada", "China", "abd"})
     void invalidCountry(final String country) {

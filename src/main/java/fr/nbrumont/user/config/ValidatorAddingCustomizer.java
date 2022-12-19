@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 /**
- * Had to use this to be able to inject Clock into UserIsAdultValidator
+ * This component allows the usage of Spring's {@link org.springframework.beans.factory.annotation.Autowired} inside validators
  * in order for Hibernate to use Spring managed constraint validators
- * <p>
- * see <a href="https://stackoverflow.com/questions/56782292/configuring-spring-validation-and-hibernate-validation">...</a>
+ *
+ * @see <a href="https://stackoverflow.com/questions/56782292/configuring-spring-validation-and-hibernate-validation>this post talking about it</a>
  */
 @Component
 public class ValidatorAddingCustomizer implements HibernatePropertiesCustomizer {

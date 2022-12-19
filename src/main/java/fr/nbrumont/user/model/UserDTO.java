@@ -1,4 +1,4 @@
-package fr.nbrumont.user.api;
+package fr.nbrumont.user.model;
 
 import lombok.Getter;
 import lombok.Setter;

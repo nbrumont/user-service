@@ -10,6 +10,13 @@ import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class JacksonJavaTimeModule {
+
+    /**
+     * This bean allows the usage of LocalDate within Rest DTOs for (de)serialisation by Jackson.
+     * It also sets the format of serialized dates not to use timestamp
+     *
+     * @return a new {@link ObjectMapper} with custom configuration.
+     */
     @Bean
     @Primary
     public ObjectMapper objectMapper() {
