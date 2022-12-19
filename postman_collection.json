@@ -183,6 +183,34 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Create user with invalid fields",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"nbrumont\",\r\n    \"birthDate\": \"1990-07-07\",\r\n    \"residenceCountry\": \"Canada\",\r\n    \"phoneNumber\": \"0678912345\",\r\n    \"gender\": \"M\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
