@@ -17,6 +17,7 @@ This app uses the following technologies and tools
 - Maven
 - Git
 - A way to send http requests (curl, postman ...)
+- an editor or IDE
 
 ### Compiling sources and running the server
 
@@ -25,7 +26,8 @@ This app uses the following technologies and tools
    <code>mvn clean install</code>
 3. Start a dev server : <code>mvn spring-boot:run</code> or a prod server <code>java -jar
    target/user-service-0.0.1.jar</code>
-4. Database administration console is available at http://localhost:8080/users/h2-console (jdbc url is jdbc:h2:mem:user)
+4. Database administration console is available at http://localhost:8080/users/h2-console (jdbc url is jdbc:h2:mem:user,
+   the rest is default)
 
 ### Using the API
 
@@ -46,6 +48,16 @@ see [postman-collection](./postman_collection.json)
 or [MVC tests](./src/test/java/fr/nbrumont/user/api/UserControllerIntegrationTest.java) to learn more on how to use
 these.
 
+### Configuration
+
+This configuration is done inside [application.properties](./src/main/resources/application.properties) :
+
+- Root context is /users
+- Database is h2 and url is jdbc:h2:mem:user
+- Database console is enabled on /h2-console
+- Hibernate create schema at startup
+- No data is initialized during schema creation
+
 ### Testing strategy
 
 1. Code containing any logic is tested against unit test and MVC api tests.
@@ -55,3 +67,4 @@ Overall coverage is 95%. Missed hits are :
 
 - on ClockConfig (Clock is always mocked)
 - on unreachable code : auto-generated mapper that checks null on user input
+- on UserApplication (Spring boot entry point)
